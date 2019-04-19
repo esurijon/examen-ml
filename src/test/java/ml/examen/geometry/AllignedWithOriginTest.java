@@ -3,10 +3,9 @@ package ml.examen.geometry;
 import java.util.Random;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
-public class IntegerGeometryTest {
+public class AllignedWithOriginTest {
 
 	private IntegerGeometry geometry = new IntegerGeometry();
 	
@@ -61,29 +60,6 @@ public class IntegerGeometryTest {
 		boolean areAllAligned = geometry.areAllCoordsAlignedWithOrigin(anyCoord, otherCoord, anotherCoord);
 
 		Assert.assertFalse("Lass coordenadas NO estan alineadas", areAllAligned);
-	}
-
-	@Test
-	@Ignore
-	public void regularPolygonSurroundsOrigin_Test() {
-		PolarCoord<Integer> anyCoord = new PolarCoord<Integer>(
-			rand.nextInt(), 
-			rand.nextInt(360)
-		);
-	
-		PolarCoord<Integer> otherCoord = new PolarCoord<Integer>(
-			rand.nextInt(),
-			(anyCoord.getAngle() + 120) % 360
-		);
-		
-		PolarCoord<Integer> anotherCoord = new PolarCoord<Integer>(
-			rand.nextInt(),
-			(anyCoord.getAngle() + 240) % 360
-		);
-
-		boolean isSurrounded = geometry.isOriginSurroundedByPolygon(anyCoord, otherCoord, anotherCoord);
-
-		Assert.assertTrue(isSurrounded);
 	}
 
 }

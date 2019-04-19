@@ -3,13 +3,12 @@ package ml.examen.console;
 import java.util.ArrayList;
 import java.util.List;
 
-import ml.examen.geometry.IntegerGeometry;
 import ml.examen.geometry.PolarCoord;
 import ml.examen.solarsystem.Planet;
 import ml.examen.solarsystem.SolarSystem;
 import ml.examen.weather.PositionalWeatherService;
-import ml.examen.weather.WeatherService;
 import ml.examen.weather.Weather;
+import ml.examen.weather.WeatherService;
 
 public class Examen {
 
@@ -21,7 +20,7 @@ public class Examen {
 		
 		SolarSystem solarSystem = new SolarSystem(ferengi, betasoide, vulcano);
 
-		WeatherService weatherService = new PositionalWeatherService(new IntegerGeometry());
+		WeatherService weatherService = new PositionalWeatherService();
 		int droughtsQty = 0;
 		int rainsQty = 0;
 		int optimalsQty = 0;

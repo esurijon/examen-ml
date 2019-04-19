@@ -15,5 +15,4 @@ public class PolarCoord<T extends Number> {
 		return angle;
 	}
 	
-	
 }
