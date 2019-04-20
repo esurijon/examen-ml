@@ -17,9 +17,9 @@ public class SolarSystem {
 	}
 	
 	public static SolarSystem build() {
-		Planet ferengi = new Planet("ferengi", 1 , new PolarCoord<Integer>(500, 0));
-		Planet betasoide = new Planet("betasoide", 3 , new PolarCoord<Integer>(2000, 0));
-		Planet vulcano = new Planet("vulcano", -5 , new PolarCoord<Integer>(1000, 0));
+		Planet ferengi = new Planet("ferengi", 1 , new PolarCoord<Double>(500d, 0d));
+		Planet betasoide = new Planet("betasoide", 3 , new PolarCoord<Double>(2000d, 0d));
+		Planet vulcano = new Planet("vulcano", -5 , new PolarCoord<Double>(1000d, 0d));
 		
 		return new SolarSystem(ferengi, betasoide, vulcano);
 		

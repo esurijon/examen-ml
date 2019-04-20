@@ -5,7 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
-import ml.examen.geometry.IntegerGeometry;
+import ml.examen.geometry.DoublePrecisonGeometry;
+import ml.examen.geometry.Geometry;
 import ml.examen.solarsystem.SolarSystem;
 
 @SpringBootApplication
@@ -17,13 +18,13 @@ public class ExamenApplication {
 	}
 
 	@Bean
-	IntegerGeometry geometry() {
-		return new IntegerGeometry();
+	SolarSystem solarSystem() {
+		return SolarSystem.build();
 	}
 
 	@Bean
-	SolarSystem solarSystem() {
-		return SolarSystem.build();
+	Geometry<Double> doublePrecisionGeometry() {
+		return new DoublePrecisonGeometry(0.0001);
 	}
 
 }

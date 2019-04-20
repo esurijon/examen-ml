@@ -5,17 +5,17 @@ import ml.examen.geometry.PolarCoord;
 public class Planet {
 
 	private String name;
-	private int angularSpeed;
-	private PolarCoord<Integer> initialPosition;
+	private double angularSpeed;
+	private PolarCoord<Double> initialPosition;
 
-	public Planet(String name, int angularSpeed, PolarCoord<Integer> initialPosition) {
+	public Planet(String name, double angularSpeed, PolarCoord<Double> initialPosition) {
 		this.name = name;
 		this.angularSpeed = angularSpeed;
 		this.initialPosition = initialPosition;
 	}
 
-	public PolarCoord<Integer> getPositionAt(int day) {
-		int angle = initialPosition.getAngle() + (angularSpeed * day) % 360 ;
+	public PolarCoord<Double> getPositionAt(int day) {
+		double angle = initialPosition.getAngle() + (angularSpeed * day) % 360 ;
 		return new PolarCoord<>(
 			initialPosition.getMod(), 
 			angle 

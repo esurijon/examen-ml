@@ -2,30 +2,35 @@ package ml.examen.weather;
 
 import java.util.Arrays;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ml.examen.geometry.IntegerGeometry;
+import ml.examen.geometry.Geometry;
 import ml.examen.geometry.PolarCoord;
 import ml.examen.solarsystem.SolarSystem;
 
 @Service
 public class PositionalWeatherService implements WeatherService {
 	
-	public PositionalWeatherService() {
+	private Geometry<Double> geometry;
+
+	@Autowired
+	public PositionalWeatherService(Geometry<Double> geometry) {
+		this.geometry = geometry;
 	}
 	
 	@Override
 	public Weather forecastWheater(int day, SolarSystem solarSystem) {
 		@SuppressWarnings("unchecked")
-		PolarCoord<Integer>[] coords = Arrays.asList(solarSystem.getPlanets())
+		PolarCoord<Double>[] coords = Arrays.asList(solarSystem.getPlanets())
 			.stream()
 			.map( planet -> planet.getPositionAt(day))
 			.toArray(PolarCoord[]::new);
 		
-		boolean isDroughtPeriod = IntegerGeometry.areAllCoordsAlignedIncludingOrigin(coords);
-		boolean isRainyPeriod = IntegerGeometry.isOriginSurroundedByPolygon(coords);
-		double rainAmount = isRainyPeriod ? IntegerGeometry.trianglePerimiter(coords[0], coords[1], coords[2]) : 0;
-		boolean isOptimalPresureAndTemperature = IntegerGeometry.areAllCoordsAlignedExcludingOrigin(coords[0], coords[1], coords[2]);
+		boolean isDroughtPeriod = geometry.areAllCoordsAlignedIncludingOrigin(coords);
+		boolean isRainyPeriod = geometry.isOriginSurroundedByPolygon(coords);
+		double rainAmount = isRainyPeriod ? geometry.trianglePerimiter(coords[0], coords[1], coords[2]) : 0;
+		boolean isOptimalPresureAndTemperature = geometry.areAllCoordsAlignedExcludingOrigin(coords[0], coords[1], coords[2]);
 
 		Weather weather = new Weather(day, isDroughtPeriod, isRainyPeriod, rainAmount, isOptimalPresureAndTemperature);
 		
