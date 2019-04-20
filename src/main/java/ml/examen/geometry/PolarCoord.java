@@ -8,11 +8,13 @@ public class PolarCoord<T extends Number> {
 		this.mod = mod;
 		this.angle = angle;
 	}
+
 	public T getMod() {
 		return mod;
 	}
+
 	public T getAngle() {
 		return angle;
 	}
-	
+
 }

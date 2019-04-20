@@ -7,23 +7,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ml.examen.solarsystem.SolarSystem;
 import ml.examen.weather.Weather;
-import ml.examen.weather.WeatherService;
+import ml.examen.weather.ForecastService;
 
 @RestController
 @RequestMapping(path = "/clima")
 public class WeatherController {
 
-	private WeatherService weatherService;
+	private ForecastService forecastService;
 	private SolarSystem solarSystem;
 
-	public WeatherController(WeatherService weatherService, SolarSystem solarSystem) {
-		this.weatherService = weatherService;
+	public WeatherController(ForecastService forecastService, SolarSystem solarSystem) {
+		this.forecastService = forecastService;
 		this.solarSystem = solarSystem;
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	public Weather getWheather(@RequestParam(name = "day", defaultValue = "0") int day) {
-		return weatherService.forecastWheater(day, solarSystem);
+		return forecastService.forecastWheater(day, solarSystem);
 	}
 
 }

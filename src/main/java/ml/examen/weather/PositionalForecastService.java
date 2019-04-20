@@ -10,12 +10,12 @@ import ml.examen.geometry.PolarCoord;
 import ml.examen.solarsystem.SolarSystem;
 
 @Service
-public class PositionalWeatherService implements WeatherService {
+public class PositionalForecastService implements ForecastService {
 	
 	private Geometry<Double> geometry;
 
 	@Autowired
-	public PositionalWeatherService(Geometry<Double> geometry) {
+	public PositionalForecastService(Geometry<Double> geometry) {
 		this.geometry = geometry;
 	}
 	

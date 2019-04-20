@@ -15,8 +15,8 @@ public class DoublePrecisonGeometry implements Geometry<Double> {
 	@Override
 	final public boolean areAllCoordsAlignedIncludingOrigin(PolarCoord<Double>... coords) {
 		for (int i = 0; i < coords.length - 1; i++) {
-			double diff = coords[i].getAngle() - coords[i + 1].getAngle();
-			if (diff != 0 && diff != 180 && diff != -180) {
+			double diff =  phaseDiff(coords[i], coords[i+1]);
+			if (diff != 0 && diff != 180) {
 				return false;
 			}
 		}
@@ -38,7 +38,7 @@ public class DoublePrecisonGeometry implements Geometry<Double> {
 	@Override
 	final public boolean areAllCoordsAlignedExcludingOrigin(PolarCoord<Double> a, PolarCoord<Double> b, PolarCoord<Double> c) {
 		List<PolarCoord<Double>> sortedCoords = Arrays.asList(a,b,c);
-		sortedCoords.sort( (s,w) -> (int)(s.getAngle() - w.getAngle()) );
+		sortedCoords.sort( (x, y) -> (int)( x.getAngle() - y.getAngle()) );
 		a = sortedCoords.get(0);
 		b = sortedCoords.get(1);
 		c = sortedCoords.get(2);
