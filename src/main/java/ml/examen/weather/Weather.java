@@ -3,15 +3,15 @@ package ml.examen.weather;
 public class Weather {
 
 	private int day;
-	private boolean isDroughtPeriod;
-	private boolean isRainyPeriod;
+	private boolean isDrought;
+	private boolean isRainy;
 	private double rainAmount;
 	private boolean isOptimalPresureAndTemperature;
 
-	public Weather(int day, boolean isDroughtPeriod, boolean isRainyPeriod, double rainAmount, boolean isOptimalPresureAndTemperature) {
+	public Weather(int day, boolean isDrought, boolean isRainy, double rainAmount, boolean isOptimalPresureAndTemperature) {
 		this.day = day;
-		this.isDroughtPeriod = isDroughtPeriod;
-		this.isRainyPeriod = isRainyPeriod;
+		this.isDrought = isDrought;
+		this.isRainy = isRainy;
 		this.rainAmount = rainAmount;
 		this.isOptimalPresureAndTemperature = isOptimalPresureAndTemperature;
 	}
@@ -20,12 +20,12 @@ public class Weather {
 		return day;
 	}
 
-	public boolean isDroughtPeriod() {
-		return isDroughtPeriod;
+	public boolean isDrought() {
+		return isDrought;
 	}
 
-	public boolean isRainyPeriod() {
-		return isRainyPeriod;
+	public boolean isRainy() {
+		return isRainy;
 	}
 
 	public double getRainAmount() {
