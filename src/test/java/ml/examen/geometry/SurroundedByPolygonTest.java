@@ -7,8 +7,6 @@ import org.junit.Test;
 
 public class SurroundedByPolygonTest {
 
-	private IntegerGeometry geometry = new IntegerGeometry();
-	
 	private Random rand = new Random();
 	
 	@Test
@@ -19,6 +17,7 @@ public class SurroundedByPolygonTest {
 		);
 	
 		int n = 10;
+		@SuppressWarnings("unchecked")
 		PolarCoord<Integer>[] coords = new PolarCoord[n];
 		coords[0] = initCoord;
 		for (int i = 1; i < coords.length; i++) {
@@ -28,7 +27,7 @@ public class SurroundedByPolygonTest {
 			);
 		}
 		
-		boolean isSurrounded = geometry.isOriginSurroundedByPolygon(coords);
+		boolean isSurrounded = IntegerGeometry.isOriginSurroundedByPolygon(coords);
 
 		Assert.assertTrue(isSurrounded);
 	}
@@ -41,6 +40,7 @@ public class SurroundedByPolygonTest {
 		);
 	
 		int n = 3;
+		@SuppressWarnings("unchecked")
 		PolarCoord<Integer>[] coords = new PolarCoord[n];
 		coords[0] = initCoord;
 		for (int i = 1; i < coords.length; i++) {
@@ -50,7 +50,7 @@ public class SurroundedByPolygonTest {
 			);
 		}
 		
-		boolean isSurrounded = geometry.isOriginSurroundedByPolygon(coords);
+		boolean isSurrounded = IntegerGeometry.isOriginSurroundedByPolygon(coords);
 
 		Assert.assertFalse(isSurrounded);
 	}

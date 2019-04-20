@@ -22,14 +22,22 @@ public class PositionalWeatherService implements WeatherService {
 			.map( planet -> planet.getPositionAt(day))
 			.toArray(PolarCoord[]::new);
 		
-		boolean isDroughtPeriod = IntegerGeometry.areAllCoordsAlignedWithOrigin(coords);
+		boolean isDroughtPeriod = IntegerGeometry.areAllCoordsAlignedIncludingOrigin(coords);
 		boolean isRainyPeriod = IntegerGeometry.isOriginSurroundedByPolygon(coords);
-		boolean isMaximunRainyDay = isRainyPeriod && IntegerGeometry.trianglePerimiterIsMaximun(coords[0], coords[1], coords[2]);
-		boolean isOptimalPresureAndTemperature = IntegerGeometry.areAllCoordsAligned(coords);
+		double rainAmount = isRainyPeriod ? IntegerGeometry.trianglePerimiter(coords[0], coords[1], coords[2]) : 0;
+		boolean isOptimalPresureAndTemperature = IntegerGeometry.areAllCoordsAlignedExcludingOrigin(coords[0], coords[1], coords[2]);
 
-		Weather weather = new Weather(day, isDroughtPeriod, isRainyPeriod, isMaximunRainyDay, isOptimalPresureAndTemperature);
+		Weather weather = new Weather(day, isDroughtPeriod, isRainyPeriod, rainAmount, isOptimalPresureAndTemperature);
 		
 		return weather ;
+	}
+
+	@Override
+	public ForecastSummary forecastSummary(int years, SolarSystem solarSystem) {
+		for (int i = 0; i < years * 365; i++) {
+			this.forecastWheater(i, solarSystem);
+		}
+		return null;
 	}
 
 }

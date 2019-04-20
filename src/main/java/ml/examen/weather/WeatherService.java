@@ -6,4 +6,7 @@ public interface WeatherService {
 	
 	public Weather forecastWheater(int day, SolarSystem system);
 
+	public ForecastSummary forecastSummary(int years, SolarSystem system);
+	
+	
 }
